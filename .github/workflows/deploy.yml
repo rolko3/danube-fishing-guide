@@ -13,12 +13,11 @@ jobs:
       - name: 🚚 Kód letöltése
         uses: actions/checkout@v4
 
-      - name: 📁 Fájlok másolása SFTP-vel
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: 📁 Fájlok másolása
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: sftp
           port: 22
-          remote_path: '/site/'
-          local_path: './*'
