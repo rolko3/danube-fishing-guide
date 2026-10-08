@@ -13,11 +13,11 @@ jobs:
       - name: 🚚 Kód letöltése
         uses: actions/checkout@v4
 
-      - name: 📁 Fájlok másolása
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 📁 Fájlok másolása SFTP-vel
+        uses: presslabs/gaction-sftp-sync@v1
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: sftp
           port: 22
+          dir: '.'
