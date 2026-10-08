@@ -7,19 +7,19 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Telepítés
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Kód letöltése
         uses: actions/checkout@v4
 
-      - name: 📁 Sync files to Strato
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 📁 Fájlok másolása SFTP-vel
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /site/
-          protocol: ftp
-          port: 21
-          security: loose
+          port: 22
+          remote_path: '/site/'
+          local_path: './*'
+
