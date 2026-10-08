@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danube Fishing Guide - Esztergom</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root { 
+      --primary: #0a2239; 
+      --secondary: #1d3557; 
+      --accent: #e63946; 
+      --accent-gold: #ffb703;
+      --teal: #00b4d8;
+      --dark: #050f1a; 
+      --light: #edf2f4; 
+      --card-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { 
+      font-family: 'Roboto', sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: var(--light); 
+      color: #2b2d42; 
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    header { 
+      background: linear-gradient(135deg, rgba(10, 34, 57, 0.88), rgba(5, 15, 26, 0.92)), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80'); 
+      background-size: cover; 
+      background-position: center; 
+      color: white; 
+      padding: 50px 20px 80px 20px; 
+      text-align: center;
+      position: relative;
+      border-bottom: 4px solid var(--accent-gold);
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 30px auto;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #caf0f8;
+      margin: 0;
+    }
+
+    .container { 
+      max-width: 1100px; 
+      margin: -40px auto 40px auto; 
+      padding: 0 20px; 
+      position: relative;
+      z-index: 10;
+    }
+
+    .card { 
+      background: var(--card-bg); 
+      border-radius: var(--radius); 
+      padding: 30px; 
+      margin-bottom: 25px; 
+      box-shadow: var(--shadow); 
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 25px; 
+    }
+
+    .btn { 
+      background: linear-gradient(135deg, #ffb703, #fb8500); 
+      color: #050f1a; 
+      border: none; 
+      padding: 14px 28px; 
+      border-radius: 50px; 
+      cursor: pointer; 
+      font-weight: 700; 
+      font-size: 1rem; 
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(251, 133, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover { 
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(251, 133, 0, 0.4);
+    }
+
+    .btn-secondary { 
+      background: rgba(255, 255, 255, 0.2); 
+      color: white; 
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { 
+      background: white; 
+      color: var(--primary); 
+    }
+
+    .tour-card {
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 20px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tour-card h4 { margin-top: 0; color: var(--primary); font-size: 1.3rem; }
+    .tour-features { list-style: none; padding: 0; margin: 15px 0; font-size: 0.95rem; line-height: 1.6; }
+    .tour-features li::before { content: "✓ "; color: var(--teal); font-weight: bold; }
+
+    .warning-box { 
+      background: linear-gradient(135deg, #fff3cd, #ffe69c); 
+      border-left: 6px solid #ffb703; 
+      padding: 20px; 
+      margin-bottom: 25px; 
+      border-radius: var(--radius); 
+      box-shadow: var(--shadow);
+    }
+
+    .checkbox-group { 
+      margin: 20px 0; 
+      background: #f1f5f9; 
+      padding: 18px; 
+      border-radius: 8px; 
+      border: 1px solid #e2e8f0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .lang-btn { 
+      background: transparent; 
+      border: 1px solid rgba(255,255,255,0.4); 
+      color: white; 
+      padding: 5px 12px; 
+      margin: 0 2px; 
+      cursor: pointer; 
+      border-radius: 20px; 
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .lang-btn:hover { background: var(--accent-gold); color: black; }
+
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--secondary);
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      height: 200px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: white;
+      padding: 15px 10px 8px 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5, 15, 26, 0.75);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 35px;
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px; right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    input, select { border-radius: 6px; border: 1px solid #cbd5e1; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-nav">
+    <div>
+      <button class="lang-btn" onclick="setLang('hu')">HU</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+    </div>
+    <div>
+      <button class="btn-secondary" onclick="openModal('auth-modal')">🔑 Bejelentkezés / Regisztráció</button>
+    </div>
+  </div>
+  <h1 id="title">Danube Fishing Guide – Esztergom</h1>
+  <p id="subtitle">Professzionális csónakos pergető guiding a Dunán (max. 1-2 fő)</p>
+</header>
+
+<div class="container">
+
+  <div class="grid">
+    <div class="card">
+      <h3 style="color: var(--teal); margin-top: 0;">🌊 Duna Vízállás (Esztergom)</h3>
+      <p id="water-info" style="font-size: 1.1rem;">Vízállás: <strong>235 cm</strong> | Tendencia: ➡️ Stagnál</p>
+      <small style="color: #64748b;">Forrás: Nyílt vízrajzi adatok (Hydroinfo/OVF)</small>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--accent-gold); margin-top: 0;">🌤️ Időjárás & Holdfázis</h3>
+      <p id="weather-info">Esztergom: 18°C, MÉRSÉKELT SZÉL</p>
+      <p id="moon-info">Holdfázis: Növekvő hold (Jó horgászidő)</p>
+    </div>
+  </div>
+
+  <div id="seasonal-notice" class="warning-box">
+    <h4 style="margin: 0 0 10px 0; color: #856404;">🚨 KÍMÉLETI TERÜLET FIGYELMEZTETÉS</h4>
+    <p id="seasonal-text" style="margin: 0;">Az esztergomi <strong>Sódergödör teljes területe kíméleti területnek minősül október 1. és március 31. között</strong>. Ebben az időszakban a területen a horgászat tilos!</p>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--primary); margin-top: 0;">🎣 Túráink & Áraink</h3>
+    <p>Próbáld ki az igazi dunai pergetést profi vezetővel, csúcskategóriás horgászcsónakból!</p>
+    
+    <div class="grid" style="margin-top: 20px;">
+      <div class="tour-card">
+        <div>
+          <h4>Félnapos Pergetés</h4>
+          <p><small>Időtartam: 4-5 óra | Max 1-2 fő</small></p>
+          <ul class="tour-features">
+            <li>Süllő, balin és kősüllő célzott horgászata</li>
+            <li>Prémium pergető felszerelés kérésre</li>
+            <li>Üzemanyag és csónakhasználat benne van</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="scrollToBooking('Félnapos (4 óra)')">Foglalás</button>
+      </div>
+
+      <div class="tour-card" style="border-color: var(--accent-gold);">
+        <div>
+          <h4>Egész Napos Túra</h4>
+          <p><small>Időtartam: 8 óra | Max 1-2 fő</small></p>
+          <ul class="tour-features">
+            <li>Harcsa, csuka és süllő pergetve/plasztikkal</li>
+            <li>A teljes esztergomi Duna-szakasz áthorgászása</li>
+            <li>Több helyszín, műszeres halrajkeresés</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="scrollToBooking('Egész napos (8 óra)')">Foglalás</button>
+      </div>
+
+      <div class="tour-card">
+        <div>
+          <h4>Éjszakai Süllőzés</h4>
+          <p><small>Időtartam: 6 óra | Max 1-2 fő</small></p>
+          <ul class="tour-features">
+            <li>Wobbleres sekélyvízi éjszakai rablás-horgászat</li>
+            <li>Extrém élmények és adrenalin a sötét Dunán</li>
+            <li>Speciális éjszakai felszerelés & világítás</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="scrollToBooking('Éjszakai süllőzés (6 óra)')">Foglalás</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--primary); margin-top: 0;">🛥️ A Csónak & Felszerelés</h3>
+    <div class="grid">
+      <div>
+        <h4>Profi Guiding Csónak</h4>
+        <ul>
+          <li>Stabil, kifejezetten folyóvízi pergetésre épített csónak</li>
+          <li>Elektromos orrmotor (GPS-es horgony funkcióval)</li>
+          <li>Modern halradaros felderítés</li>
+          <li>Minden kötelező biztonsági és mentőfelszerelés</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horgászeszközök & Csalik</h4>
+        <ul>
+          <li>Csúcskategóriás pergetőbotok és orsók (igény esetén biztosítva)</li>
+          <li>Kiterjedt műcsali kollekció (jigek, wobblerek, gumihalak)</li>
+          <li>Személyre szabott technikai oktatás és segítség</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--primary); margin-top: 0;">🖼️ Fogási & Túra Galéria</h3>
+    <div class="filter-buttons">
+      <button class="filter-btn active" onclick="filterGallery('all', this)">Összes</button>
+      <button class="filter-btn" onclick="filterGallery('sullo', this)">Süllőzés</button>
+      <button class="filter-btn" onclick="filterGallery('harcsa', this)">Harcsázás</button>
+      <button class="filter-btn" onclick="filterGallery('csonak', this)">Csónak & Tájak</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item sullo">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Süllő">
+        <div class="gallery-caption">Éjszakai süllő pergetve</div>
+      </div>
+      <div class="gallery-item harcsa">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Harcsa">
+        <div class="gallery-caption">Dunai harcsa fogságban</div>
+      </div>
+      <div class="gallery-item csonak">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Csónak">
+        <div class="gallery-caption">A felszerelt túracsónak</div>
+      </div>
+      <div class="gallery-item sullo">
+        <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=600&q=80" alt="Süllő 2">
+        <div class="gallery-caption">Őszi kősüllő</div>
+      </div>
+      <div class="gallery-item csonak">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80" alt="Duna naplemente">
+        <div class="gallery-caption">Naplemente az esztergomi Dunán</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--primary); margin-top: 0;">📜 Szabályzat & Fontos Linkek</h3>
+    <p>A túráink során a helyi és nemzeti horgászrend betartása kötelező:</p>
+    <ul>
+      <li>🔗 <a href="https://kemhesz.hu/dunai-horgaszrend/" target="_blank" style="color: var(--teal); font-weight: bold;">KEMHESZ Hivatalos Dunai Horgászrend</a></li>
+      <li>🔗 <a href="https://horinfo.hu" target="_blank" style="color: var(--teal); font-weight: bold;">HORINFO – Állami & Területi Jegy Váltás</a></li>
+      <li>🔗 <a href="https://turistahorgasz.hu" target="_blank" style="color: var(--teal); font-weight: bold;">Turista Horgászjegy (Külföldieknek)</a></li>
+    </ul>
+  </div>
+
+  <div class="card" id="booking-section">
+    <h3 style="color: var(--primary); margin-top: 0;">📅 Túra Foglalás & Fizetés</h3>
+    <form id="booking-form" onsubmit="handleBooking(event)">
+      <label><b>Név / Name:</b></label><br>
+      <input type="text" id="cust-name" required style="width:100%; padding:12px; margin:8px 0 18px 0; box-sizing: border-box;"><br>
+      
+      <label><b>E-mail:</b></label><br>
+      <input type="email" id="cust-email" required style="width:100%; padding:12px; margin:8px 0 18px 0; box-sizing: border-box;"><br>
+      
+      <label><b>Túra Dátuma / Date:</b></label><br>
+      <input type="date" id="cust-date" required style="width:100%; padding:12px; margin:8px 0 18px 0; box-sizing: border-box;"><br>
+
+      <label><b>Választott Túra / Tour:</b></label><br>
+      <select id="cust-tour" style="width:100%; padding:12px; margin:8px 0 18px 0; box-sizing: border-box;">
+        <option value="Félnapos (4 óra)">Félnapos túra (4-5 óra) - Süllő / Balin</option>
+        <option value="Egész napos (8 óra)">Egész napos túra (8 óra) - Harcsa / Csuka / Süllő</option>
+        <option value="Éjszakai süllőzés (6 óra)">Éjszakai süllőzés (6 óra)</option>
+      </select><br>
+
+      <label><b>Fizetési Mód / Payment Method:</b></label><br>
+      <select id="pay-method" style="width:100%; padding:12px; margin:8px 0 18px 0; box-sizing: border-box;">
+        <option value="Bankkártya (Stripe/Barion)">Online Bankkártya (Stripe / Barion)</option>
+        <option value="Helyszíni készpénz">Helyszínen készpénzben</option>
+        <option value="Átutalás">Előreutalás</option>
+      </select><br>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="terms" required style="width: auto; height: auto;">
+        <label for="terms"> <strong>Kijelentem és elfogadom:</strong> Tudomásul veszem, hogy a túrán való részvételhez érvényes állami horgászjeggyel és területi engedéllyel kell rendelkeznem. Tisztában vagyok a <a href="https://kemhesz.hu/dunai-horgaszrend/" target="_blank">KEMHESZ Horgászrend</a> előírásaival, a méretkorlátozásokkal és a tilalmi időszakokkal. Tudomásul veszem, hogy engedélyek hiányában a horgászat nem kezdhető meg, és a túra ára nem jár vissza.</label>
+      </div>
+
+      <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Foglalás és Fizetés Indítása</button>
+    </form>
+  </div>
+
+</div>
+
+<div id="auth-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('auth-modal')">&times;</span>
+    <h3 id="auth-title" style="margin-top:0; color:var(--primary);">Bejelentkezés</h3>
+    <form onsubmit="handleAuth(event)">
+      <label>E-mail cím:</label><br>
+      <input type="email" required style="width:100%; padding:10px; margin:8px 0 15px 0; box-sizing: border-box;"><br>
+      
+      <label>Jelszó:</label><br>
+      <input type="password" required style="width:100%; padding:10px; margin:8px 0 20px 0; box-sizing: border-box;"><br>
+      
+      <button type="submit" class="btn" style="width:100%;">Belépés</button>
+    </form>
+    <p style="text-align:center; margin-top:20px; font-size:0.9rem;">
+      Még nincs fiókod? <a href="#" onclick="alert('Regisztrációs felület megnyitása...')" style="color:var(--teal); font-weight:bold;">Regisztráció</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    if(lang === 'en') {
+      document.getElementById('title').innerText = "Danube Lure Fishing Guides - Esztergom";
+      document.getElementById('subtitle').innerText = "Professional boat guiding on the Danube (max 1-2 pers.)";
+    } else if(lang === 'de') {
+      document.getElementById('title').innerText = "Donau Raubfisch-Guiding - Esztergom";
+      document.getElementById('subtitle').innerText = "Professionelles Bootsangeln auf der Donau (max. 1-2 Pers.)";
+    } else {
+      document.getElementById('title').innerText = "Dunai Pergető Horgásztúrák – Esztergom";
+      document.getElementById('subtitle').innerText = "Professzionális csónakos guiding a Dunán (max. 1-2 fő)";
+    }
+  }
+
+  function filterGallery(category, btnElement) {
+    const items = document.querySelectorAll('.gallery-item');
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    items.forEach(item => {
+      if (category === 'all' || item.classList.contains(category)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function scrollToBooking(tourType) {
+    document.getElementById('cust-tour').value = tourType;
+    document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+  function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+  function handleBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('cust-name').value;
+    const tour = document.getElementById('cust-tour').value;
+    const date = document.getElementById('cust-date').value;
+    const pay = document.getElementById('pay-method').value;
+
+    alert(`Köszönjük a foglalást, ${name}!\n\nVálasztott túra: ${tour}\nDátum: ${date}\nFizetés: ${pay}\n\nA megadott e-mail címre elküldtük a visszaigazolást!`);
+  }
+
+  function handleAuth(e) {
+    e.preventDefault();
+    alert("Sikeres bejelentkezés!");
+    closeModal('auth-modal');
+  }
+</script>
+
+</body>
+</html>
